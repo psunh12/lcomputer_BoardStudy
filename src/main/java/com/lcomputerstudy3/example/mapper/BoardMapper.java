@@ -8,3 +8,4 @@ import com.lcomputerstudy3.example.domain.Board;
 public interface BoardMapper {
 	public List<Board> selectBoardList();
 }
+

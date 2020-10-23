@@ -47,4 +47,4 @@ server:
         enabled: false 
  mybatis:
   type-aliases-package: com.lcomputerstudy3.example.domain
-  mapper-location: mapper*.xml       
+  mapper-location: mapper/**/*.xml       
