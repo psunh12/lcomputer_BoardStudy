@@ -1,0 +1,17 @@
+{"properties": [
+  {
+    "name": "server.mybatis.type-aliases-package",
+    "type": "java.lang.String",
+    "description": "A description for 'server.mybatis.type-aliases-package'"
+  },
+  {
+    "name": "server.mybatis.mapper-location",
+    "type": "java.lang.String",
+    "description": "A description for 'server.mybatis.mapper-location'"
+  },
+  {
+    "name": "server.tomcat.file-encoding",
+    "type": "java.lang.String",
+    "description": "A description for 'server.tomcat.file-encoding'"
+  }
+]}
