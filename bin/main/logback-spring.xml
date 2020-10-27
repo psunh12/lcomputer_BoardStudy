@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="30 seconds">
+	<!-- console 로그설정 -->
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%d{HH:mm:ss.sss} %highlight([%-5level]) --- [%thread] %logger{35} : %msg %n</pattern>
+		</encoder>	
+	</appender>
+
+
+</configuration>

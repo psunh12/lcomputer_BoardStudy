@@ -27,11 +27,11 @@ spring:
       
       
 server:
- port: 8080
- tomcat:
+  port: 8080
+  tomcat:
     file-encoding: UTF-8
     
- servlet:
+  servlet:
     encoding:
       charset: UTF-8
       enabled: true
@@ -42,9 +42,11 @@ server:
         development: true 
     session: 
       timeout: 7200
- error:
+  error:
       whitelabel:
         enabled: false 
- mybatis:
+mybatis:
   type-aliases-package: com.lcomputerstudy3.example.domain
-  mapper-location: mapper/**/*.xml       
+  mapper-locations: mapper/**/*.xml
+logging:
+  config: classpath:logback-spring.xml

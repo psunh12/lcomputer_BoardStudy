@@ -7,9 +7,10 @@ import com.lcomputerstudy3.example.domain.User;
 
 @Mapper
 public interface UserMapper {
-		public User readUser(String username);
-		public void creatUser(User user);
-		public List<GrantedAuthority> readAuthorities(String username);
-		public void createAuthority(User user);
+	public User readUser(String username);
+	public void createUser(User user);
+	public List<GrantedAuthority> readAuthorities(String username);
+	public void createAuthority(User user);
+
 
 }

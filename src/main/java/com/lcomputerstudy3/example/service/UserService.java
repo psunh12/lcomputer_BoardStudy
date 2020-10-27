@@ -1,7 +1,7 @@
 package com.lcomputerstudy3.example.service;
 
 import java.util.Collection;
-import java.util.List;
+//import java.util.List;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import com.lcomputerstudy3.example.domain.User;

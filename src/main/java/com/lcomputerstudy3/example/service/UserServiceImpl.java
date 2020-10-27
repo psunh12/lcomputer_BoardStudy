@@ -30,11 +30,18 @@ public class UserServiceImpl implements UserService {
 		return authorities;
 	}
 	
-	@Overrride
-	
+	@Override
 	public void createUser(User user) {
 		userMapper.createUser(user);
 	}
 	
+	@Override
+	public void createAuthorities(User user) {
+		userMapper.createAuthority(user);
+	}
+	@Override
+	public User readUser(String username){
+		return userMapper.readUser(username);
+		}
 	}
 
