@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import com.lcomputerstudy3.example.mapper.BoardMapper;
 
 
-@Service("BoardServiceImpl")
-public abstract class BoardServiceImpl implements BoardService {
+@Service
+public class BoardServiceImpl implements BoardService {
 
 	@Autowired BoardMapper boardmapper;
 	@Override
@@ -16,4 +16,4 @@ public abstract class BoardServiceImpl implements BoardService {
 		return boardmapper.selectBoardList();
 	}
 
-	}
+}

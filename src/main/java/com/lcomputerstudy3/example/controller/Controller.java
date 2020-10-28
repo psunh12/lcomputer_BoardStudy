@@ -1,28 +1,44 @@
 package com.lcomputerstudy3.example.controller;
 
-//import java.util.List;
+import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-//import com.lcomputerstudy3.example.domain.Board;
+import com.lcomputerstudy3.example.domain.Board;
 import com.lcomputerstudy3.example.domain.User;
-//import com.lcomputerstudy3.example.service.BoardService;
+import com.lcomputerstudy3.example.service.BoardService;
 import com.lcomputerstudy3.example.service.UserService;
 
 @org.springframework.stereotype.Controller
 public class Controller {
+	
+	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+	
 	@Autowired UserService userservice;
-	//@Autowired BoardService boardservice;
+	@Autowired BoardService boardservice;
 	
    @RequestMapping("/")
    public String home(Model model) {
        
 //	   List<Board> list = boardservice.selectBoardList();
-//	   model.addAttribute("list",list);
+//	   model.addAttribute("list", list);
+	   logger.debug("debug");
+	   logger.info("info");
+	   logger.error("error");
 	   return "/index";
+   }
+   
+   @RequestMapping("/board/list")
+   public String boardList(Model model) {
+	   List<Board> list = boardservice.selectBoardList();
+	   model.addAttribute("list", list);
+	   
+	   return "/board/list";
    }
    
    @RequestMapping("/beforeSignUp")
@@ -53,20 +69,24 @@ public class Controller {
    }
    
    @Secured({"ROLE_ADMIN"})
-  		@RequestMapping(value="/admin")
-   		public String admin(Model model) {
+   @RequestMapping(value="/admin")
+   public String admin(Model model) {
 	   	return "/admin";
-  }
+   }
 
-   @Secured({"ROLE_USER"})
-   		@RequestMapping(value="/user/info")
-   		public String userInfo(Model model) {
+   @RequestMapping(value="/user/info")
+   public String userInfo(Model model) {
 	   	return "/user_info";
    }
-   
+  
    @RequestMapping(value="/denied")
    public String denied(Model model) {
 	   return "/denied";
    }
+   @Secured({"ROLE_WRITE"})
+		@RequestMapping(value="/write")
+		public String write(Model model) {
+	   return "/write";
+}
 }
 
