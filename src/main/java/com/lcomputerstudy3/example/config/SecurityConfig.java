@@ -16,14 +16,19 @@ import org.springframework.security.web.authentication.rememberme.JdbcTokenRepos
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import com.lcomputerstudy3.example.service.UserService;
-
+import com.lcomputerstudy3.example.service.BoardService;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-   
+	
+	
+	
    @Autowired
    private UserService userService;
+
+   @Autowired
+   private BoardService boardService;   
    
    @Autowired
    private DataSource dataSource;
@@ -87,4 +92,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
    public void configure(AuthenticationManagerBuilder auth) throws Exception {
       auth.userDetailsService(userService).passwordEncoder(passwordEncoder());
    }
+
+
+public BoardService getBoardService() {
+	return boardService;
+}
+
+
+public void setBoardService(BoardService boardService) {
+	this.boardService = boardService;
+}
 }

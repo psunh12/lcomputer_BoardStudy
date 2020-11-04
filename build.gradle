@@ -12,6 +12,13 @@ repositories {
 	mavenCentral()
 }
 
+configurations {
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
+	}
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
@@ -27,11 +34,9 @@ dependencies {
 	testImplementation 'org.springframework.security:spring-security-test'
 	
 	//jsp 연동
-   compile('org.apache.tomcat.embed:tomcat-embed-jasper')
-   compile('javax.servlet:jstl:1.2')
-
-
-	
+   	compile('org.apache.tomcat.embed:tomcat-embed-jasper')
+   	compile('javax.servlet:jstl:1.2')
+  	developmentOnly("org.springframework.boot:spring-boot-devtools")
 }
 
 test {

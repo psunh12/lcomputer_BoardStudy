@@ -30,6 +30,7 @@
                <a href="/user/info">내 정보</a>
                <a href="/admin">관리자</a>
                <a href="/write">글쓰기</a>
+               <a href="/write-list">글목록</a>
             </sec:authorize>
 		</div>
 </body>

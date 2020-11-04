@@ -8,4 +8,16 @@
 				         b_writer as bWriter
 	      FROM            lc_board
 	   </select>
+	   
+	   <insert id="createBoard" parameterType="Board">
+	   	INSERT INTO lc_board (
+	   		b_title,
+	   		b_content,
+	   		b_writer
+	   	)VALUES(
+	   		#{bTitle},
+	   		#{bContent},
+	   		#{bWriter}
+	   	)	
+	   </insert>
 </mapper>

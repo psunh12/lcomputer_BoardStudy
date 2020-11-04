@@ -83,10 +83,21 @@ public class Controller {
    public String denied(Model model) {
 	   return "/denied";
    }
-   @Secured({"ROLE_WRITE"})
-		@RequestMapping(value="/write")
-		public String write(Model model) {
+   @RequestMapping(value="/write")
+   public String write(Model model) {
 	   return "/write";
+   }
+   @RequestMapping(value="/write-list")
+   public String writeList(Model model) {
+	   return "/write_list";
+   }
+   @RequestMapping("/write-process")
+   public String writeprocess(Board board) {
+ 
+	   //board.setbId("b_id"));
+	   
+	   boardservice.createBoard(board);
+	 
+	   return "/write-result";
+   }
 }
-}
-

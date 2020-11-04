@@ -25,6 +25,8 @@ spring:
     jdbc:
       initialize-schema: always
       
+  devtools:    livereload:      enabled: true
+      
       
 server:
   port: 8080
