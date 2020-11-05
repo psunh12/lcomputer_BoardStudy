@@ -8,8 +8,11 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.lcomputerstudy3.example.domain.Board;
+import com.lcomputerstudy3.example.domain.Pagination;
 import com.lcomputerstudy3.example.domain.User;
 import com.lcomputerstudy3.example.service.BoardService;
 import com.lcomputerstudy3.example.service.UserService;
@@ -21,6 +24,8 @@ public class Controller {
 	
 	@Autowired UserService userservice;
 	@Autowired BoardService boardservice;
+
+	private int boardcount;
 	
    @RequestMapping("/")
    public String home(Model model) {
@@ -87,8 +92,14 @@ public class Controller {
    public String write(Model model) {
 	   return "/write";
    }
-   @RequestMapping(value="/write-list")
-   public String writeList(Model model) {
+   @GetMapping("/write-list/{idx}")
+   public String writeList(Model model, @PathVariable("page") int page) {
+	   List<Board> list =boardservice.selectBoardList(page);
+	   boardcount=boardservice.selectBoardCount();
+	   Pagination pagination = new Pagination();
+	   model.addAttribute("list",list);
+	   model.addAttribute("boardcount",boardcount);
+	   model.addAttribute("pagination",pagination);
 	   return "/write_list";
    }
    @RequestMapping("/write-process")

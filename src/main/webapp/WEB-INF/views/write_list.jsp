@@ -9,6 +9,9 @@
 <title>글목록</title>
 </head>
 <style>
+	h1{
+		text-align:center;
+	}
 	table {
 		border-collapse:collapse;
 	}
@@ -30,17 +33,22 @@
 <h1>글목록</h1>
 <table >
 		<tr>
+			<td colspan = "3" >전체 게시글 수 : ${boardcount }</td>
+		</tr>
+		
+		<tr>
 			<th>No</th>
 			<th>ID</th>
 			<th>내용</th>
 		</tr>
-		<c:forEach items="${list2}" var="item">
+		<c:forEach items="${list}" var="item">
 			 <tr>
-				<td>${item.b_id}</td>
-				<td>${item.b_writer}</td>
-				<td>${item.b_content}</td>
+				<td><a href="board-detail.do?bId=${item.bId}">${item.bId }</a></td>
+				<td>${item.bWriter}</td>
+				<td>${item.bContent}</td>
 		     <tr>
 		</c:forEach>
 	</table>
+	 <a href="/">돌아가기</a>
 </body>
 </html>

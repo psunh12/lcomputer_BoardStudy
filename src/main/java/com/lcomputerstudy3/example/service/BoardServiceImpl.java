@@ -12,8 +12,9 @@ public class BoardServiceImpl implements BoardService {
 
 	@Autowired BoardMapper boardMapper;
 	@Override
-	public List<Board> selectBoardList(){
-		return boardMapper.selectBoardList();
+	public List<Board> selectBoardList(int page){
+		int pageNum = (page-1)*3;
+		return boardMapper.selectBoardList(pageNum);
 	}
 	@Override
 	public Board readBoard(String bId) {
@@ -24,5 +25,14 @@ public class BoardServiceImpl implements BoardService {
 		boardMapper.createBoard(board);
 		
 	}
+	@Override
+	public int selectBoardCount() {
+		return boardMapper.selectBoardCount();
+	}
+	@Override
+	public int getBoardCount() {
+		return 0;
+	}
+	
 
 }
