@@ -11,8 +11,7 @@ public interface BoardMapper {
 	public Board readBoard(String bId);
 	public void createBoard(Board board);
 	public int selectBoardCount();
-	public int page = 1;
-	public int pageNum = (page-1)*3;
+
 }
 
 

@@ -3,12 +3,12 @@
 <mapper namespace="com.lcomputerstudy3.example.mapper.BoardMapper">
 	<select id="selectBoardList" parameterType="int" resultType="Board">
 	      SELECT 		@ROWNUM := @ROWNUM -1 AS ROWNUM,
-	      				b_id as bId,
-				        b_title as bTitle,
-				        b_content as bContent,
-				        b_writer as bWriter
-		  FROM			lc_board,
-		  				(SELECT @ROWNUM := (SELECT COUNT(*) - #{pageNum} + 1 FROM board))
+	      				ta.b_id as bId,
+				        ta.b_title as bTitle,
+				        ta.b_content as bContent,
+				        ta.b_writer as bWriter
+		  FROM			lc_board ta,
+		  				(SELECT @ROWNUM := (SELECT COUNT(*) - #{pageNum} + 1 FROM lc_board ta)) tb
 		  LIMIT			#{pageNum}, 3		
 	   </select>
 	   

@@ -28,12 +28,27 @@
 		color:#000;
 		font-weight:700;
 	}
+	ul{
+		width:600px;
+		height:50px;
+		margin:10px auto;
+		}
+	li{
+		list-style:none;
+		width:50px;
+		line-height:50px;
+		border:1px solid #ededed;
+		float:left;
+		text-align:center;
+		margin:0 5px;
+		border-radius:5px;
+		}	
 </style>
 <body>
 <h1>글목록</h1>
 <table >
 		<tr>
-			<td colspan = "3" >전체 게시글 수 : ${boardcount }</td>
+			<td colspan = "3" >전체 게시글 수 : ${pagination.boardCount }</td>
 		</tr>
 		
 		<tr>
@@ -49,6 +64,23 @@
 		     <tr>
 		</c:forEach>
 	</table>
+	
+	<div>
+	<c:forEach var="i" begin="${pagination.startPage }" end="${pagination.endPage }" step="1">
+		<c:choose>
+			<c:when test="${pagination.page == i }">
+			<li style="background-color:#ededed;">
+				<span>${i}</span>
+			</li>
+			</c:when>
+			<c:when test="${pagination.page != i }">
+			<li>
+				<a harf="write-list${i}">${i} }</a>
+			</li>
+			</c:when>
+		</c:choose>		
+	</c:forEach>
+	</div>
 	 <a href="/">돌아가기</a>
 </body>
 </html>

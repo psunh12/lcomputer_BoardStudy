@@ -38,13 +38,13 @@ public class Controller {
 	   return "/index";
    }
    
-   @RequestMapping("/board/list")
-   public String boardList(Model model) {
-	   List<Board> list = boardservice.selectBoardList();
-	   model.addAttribute("list", list);
+ //  @RequestMapping("/board/list")
+   //public String boardList(Model model) {
+	 //  List<Board> list = boardservice.selectBoardList();
+	   //model.addAttribute("list", list);
 	   
-	   return "/board/list";
-   }
+	   //return "/board/list";
+  // }
    
    @RequestMapping("/beforeSignUp")
    public String beforeSignUp() {
@@ -93,14 +93,14 @@ public class Controller {
 	   return "/write";
    }
    @GetMapping("/write-list/{idx}")
-   public String writeList(Model model, @PathVariable("page") int page) {
+   public String writeList(Model model, @PathVariable("idx") int page) {
 	   List<Board> list =boardservice.selectBoardList(page);
 	   boardcount=boardservice.selectBoardCount();
 	   Pagination pagination = new Pagination();
 	   model.addAttribute("list",list);
 	   model.addAttribute("boardcount",boardcount);
 	   model.addAttribute("pagination",pagination);
-	   return "/write_list";
+	   return "/write-list";
    }
    @RequestMapping("/write-process")
    public String writeprocess(Board board) {
