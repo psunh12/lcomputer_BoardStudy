@@ -1,9 +1,7 @@
 package com.lcomputerstudy3.example.domain;
 
-import com.lcomputerstudy3.example.service.BoardService;
-
 public class Pagination {
-	int boardCount;
+	int count;
 	int page;
 	int pageNum;
 	int startPage;
@@ -13,27 +11,25 @@ public class Pagination {
 	int nextPage;
 	public static final int pageUnit=5;
 	public static final int perPage=3;
-	BoardService boardService = null;
 	
 	public Pagination() {
 	
 	}
-	public Pagination(int page) {
+	public Pagination(int page, int count) {
 		this.page =page;
-		boardService = BoardService.getInstance();
-		boardCount=boardService.getBoardCount();
+		this.count = count;
 		startPage=((page-1)/pageUnit)*pageUnit+1;
-		lastPage = (int)Math.ceil(boardCount / (float)perPage);
+		lastPage = (int)Math.ceil(count / (float)perPage);
 		endPage=startPage+pageUnit-1;
 		endPage=endPage<lastPage ? endPage : lastPage;
 		prevPage=(endPage-pageUnit);
 		nextPage=(startPage+pageUnit);
 	}
-	public int getBoardCount() {
-		return boardCount;
+	public int getCount() {
+		return count;
 	}
-	public void setBoardCount(int boardCount) {
-		this.boardCount = boardCount;
+	public void setBoardCount(int count) {
+		this.count = count;
 	}
 	public int getPage() {
 		return page;

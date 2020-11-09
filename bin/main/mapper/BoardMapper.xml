@@ -28,4 +28,10 @@
 	  	SELECT COUNT(*) count 
 	  	FROM lc_board
 	  </select>
+	  
+	  <select id="selectBoardDetail" resultType="String">
+	  	SELECT *
+	  	FROM lc_board
+	  	WHERE b_id
+	  	</select>
 </mapper>

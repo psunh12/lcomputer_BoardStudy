@@ -1,6 +1,8 @@
 package com.lcomputerstudy3.example.controller;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,16 +94,22 @@ public class Controller {
    public String write(Model model) {
 	   return "/write";
    }
-   @GetMapping("/write-list/{idx}")
-   public String writeList(Model model, @PathVariable("idx") int page) {
+   
+   @GetMapping({"/write-list", "/write-list/{pageObject}"})
+   public String writeList(Model model, @PathVariable("pageObject") Optional<Integer> pageObject) {
+	   int page = pageObject.isPresent() ? pageObject.get() : 1;
+	   
 	   List<Board> list =boardservice.selectBoardList(page);
+	   
 	   boardcount=boardservice.selectBoardCount();
-	   Pagination pagination = new Pagination();
+	   Pagination pagination = new Pagination(page, boardcount);
+	   
 	   model.addAttribute("list",list);
-	   model.addAttribute("boardcount",boardcount);
 	   model.addAttribute("pagination",pagination);
+	   
 	   return "/write-list";
    }
+   
    @RequestMapping("/write-process")
    public String writeprocess(Board board) {
  
@@ -110,5 +118,12 @@ public class Controller {
 	   boardservice.createBoard(board);
 	 
 	   return "/write-result";
+   }
+   @RequestMapping("/board-detail/{bId}")
+   public String boardDetail(Model model, @PathVariable("bId") int bId) {
+	   List<Board> list2 = boardservice.selectBoardDetail();
+	   model.addAttribute("list2",list2);
+//	   System.out.println("bId: " + bId);
+	   return "/board-detail";
    }
 }

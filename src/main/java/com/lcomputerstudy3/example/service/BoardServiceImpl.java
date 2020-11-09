@@ -33,6 +33,10 @@ public class BoardServiceImpl implements BoardService {
 	public int getBoardCount() {
 		return 0;
 	}
+	@Override
+	public List<Board> selectBoardDetail() {
+		return boardMapper.selectBoardList(0);
+	}
 	
-
 }
+

@@ -47,40 +47,56 @@
 <body>
 <h1>글목록</h1>
 <table >
-		<tr>
-			<td colspan = "3" >전체 게시글 수 : ${pagination.boardCount }</td>
-		</tr>
-		
-		<tr>
-			<th>No</th>
-			<th>ID</th>
-			<th>내용</th>
-		</tr>
-		<c:forEach items="${list}" var="item">
-			 <tr>
-				<td><a href="board-detail.do?bId=${item.bId}">${item.bId }</a></td>
-				<td>${item.bWriter}</td>
-				<td>${item.bContent}</td>
-		     <tr>
-		</c:forEach>
-	</table>
+	<tr>
+		<td colspan = "3" >전체 게시글 수 : ${pagination.count }</td>
+	</tr>
 	
-	<div>
+	<tr>
+		<th>No</th>
+		<th>ID</th>
+		<th>내용</th>
+	</tr>
+	<c:forEach items="${list}" var="item">
+		 <tr>
+			<td><a href="/board-detail/${item.bId}">${item.bId }</a></td>
+			<td>${item.bWriter}</td>
+			<td>${item.bContent}</td>
+	     <tr>
+	</c:forEach>
+</table>
+	
+<a href="/">돌아가기</a>
+	
+<div style="margin-top: 20px;">
+	<c:choose>
+		<c:when test="${pagination.startPage > pagination.pageUnit }">
+			<li style="">
+				<a href="/write-list/${pagination.prevPage }">◀</a>
+			</li>
+		</c:when>
+	</c:choose>			
 	<c:forEach var="i" begin="${pagination.startPage }" end="${pagination.endPage }" step="1">
 		<c:choose>
 			<c:when test="${pagination.page == i }">
 			<li style="background-color:#ededed;">
-				<span>${i}</span>
+				<a href="write-list">${i}</a>
 			</li>
 			</c:when>
 			<c:when test="${pagination.page != i }">
 			<li>
-				<a harf="write-list${i}">${i} }</a>
+				<a href="/write-list/${i}">${i}</a>
 			</li>
 			</c:when>
 		</c:choose>		
 	</c:forEach>
-	</div>
-	 <a href="/">돌아가기</a>
+	
+	<c:choose>
+		<c:when test="${pagination.endPage < pagination.lastPage }">
+			<li style="">
+				<a href="/write-list/${pagination.nextPage }">▶</a>
+			</li>
+		</c:when>
+	</c:choose>			
+</div>
 </body>
 </html>

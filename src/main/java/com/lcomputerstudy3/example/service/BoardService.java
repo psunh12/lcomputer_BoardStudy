@@ -9,9 +9,7 @@ public interface BoardService {
 	public Board readBoard(String bId);
 	public void createBoard(Board board);
 	public int selectBoardCount();
-	public static BoardService getInstance() {
-		return null;
-	}
 	public int getBoardCount();
+	public List<Board> selectBoardDetail();
 
 }

@@ -11,6 +11,7 @@ public interface BoardMapper {
 	public Board readBoard(String bId);
 	public void createBoard(Board board);
 	public int selectBoardCount();
+	public List<Board> selectBoardDetail(String bId);
 
 }
 
