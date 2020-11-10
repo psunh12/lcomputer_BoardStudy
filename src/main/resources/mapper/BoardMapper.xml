@@ -29,9 +29,24 @@
 	  	FROM lc_board
 	  </select>
 	  
-	  <select id="selectBoardDetail" resultType="String">
-	  	SELECT *
-	  	FROM lc_board
-	  	WHERE b_id
-	  	</select>
+	  <select id="selectBoardDetail" parameterType="int" resultType="Board">
+		SELECT		b_id 		bId,
+					b_title 	bTitle,
+					b_content 	bContent,
+					b_writer 	bWriter,
+					b_datetime 	bDateTime
+		FROM		lc_board
+		WHERE 		b_id = #{bId}
+	  </select>
+	  
+	  <update id="Editprocess" parameterType="board">
+	  	UPDATE lc_board 
+	  	SET b_title		=	#{bTitle},
+	  		b_content	=	#{bContent}
+	  	WHERE b_id = #{bId}
+	  </update> 
+	  <delete id="WriteDelete" parameterType="board">
+	  DELETE
+	  FROM
+	  </delete>
 </mapper>

@@ -34,8 +34,20 @@ public class BoardServiceImpl implements BoardService {
 		return 0;
 	}
 	@Override
-	public List<Board> selectBoardDetail() {
-		return boardMapper.selectBoardList(0);
+	public Board selectBoardDetail(int bId) {
+		return boardMapper.selectBoardDetail(bId);
+	}
+	@Override
+	public Board selectWriteEdit() {
+		return null;
+	}
+	@Override
+	public void Editprocess(Board board) {
+		boardMapper.Editprocess(board);
+	}
+	@Override
+	public void WriteDelete(Board board) {
+		
 	}
 	
 }

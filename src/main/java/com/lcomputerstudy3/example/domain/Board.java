@@ -38,6 +38,7 @@ public class Board {
 	public void setbDateTime(String bDateTime) {
 		this.bDateTime = bDateTime;
 	}
+
 }
 	
 	

@@ -22,6 +22,10 @@
 		text-decoration:none;
 		color:#000;
 		font-weight:700;
+		border:none;
+		cursor:pointer;
+		padding:10px;
+		display:inline-block;
 	}
 	
 </style>
@@ -35,16 +39,21 @@
 				<td>내용</td>
 				<td>작성자</td>
 			</tr>
-
-			<c:forEach items="${list2}" var="board">
 		 	<tr>
 				<td>${board.bId}</td>
 				<td>${board.bTitle}</td>
 				<td>${board.bContent}</td>
 				<td>${board.bWriter}</td>
 	     	</tr>
-			</c:forEach>
 		</table>		
+	<tr style="height:50px;">
+		<td style="border:none;">
+			<a href="/write-edit/${board.bId}" style="width:70%;font-weight:700;background-color:#818181;color:#fff;" >수정</a>
+		</td>
+		<td style="border:none;">
+			<a href="/write-delete/${board.bId}"style="width:70%;font-weight:700;background-color:red;color:#fff;">삭제</a>
+		</td>
+	</tr>
 
 	</body>
 </html>

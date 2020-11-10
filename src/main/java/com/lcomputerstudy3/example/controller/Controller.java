@@ -28,6 +28,7 @@ public class Controller {
 	@Autowired BoardService boardservice;
 
 	private int boardcount;
+
 	
    @RequestMapping("/")
    public String home(Model model) {
@@ -121,9 +122,26 @@ public class Controller {
    }
    @RequestMapping("/board-detail/{bId}")
    public String boardDetail(Model model, @PathVariable("bId") int bId) {
-	   List<Board> list2 = boardservice.selectBoardDetail();
-	   model.addAttribute("list2",list2);
+	   Board board = boardservice.selectBoardDetail(bId);
+	   model.addAttribute("board", board);
 //	   System.out.println("bId: " + bId);
 	   return "/board-detail";
    }
-}
+   @RequestMapping("/write-edit/{bId}")
+   public String writeEdit(Model model, @PathVariable("bId") int bId) {
+	   Board board = boardservice.selectBoardDetail(bId);
+	   model.addAttribute("board", board);
+	   return "/write-edit";
+   }
+   @RequestMapping("/editProcess")
+   public String editprocess(Board board) {	   
+	   boardservice.Editprocess(board);
+	   return "/editProcess";
+   }
+   @RequestMapping("/write-delete")   
+	   public String writedelete(Board board) {
+	   boardservice.WriteDelete(board);
+	   return "/write-delete";
+   }
+}  
+   

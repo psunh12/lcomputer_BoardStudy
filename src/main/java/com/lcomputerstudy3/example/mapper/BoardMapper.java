@@ -11,8 +11,10 @@ public interface BoardMapper {
 	public Board readBoard(String bId);
 	public void createBoard(Board board);
 	public int selectBoardCount();
-	public List<Board> selectBoardDetail(String bId);
-
+	public Board selectBoardDetail(int bId);
+	public Board selectWriteEdit();
+	public void Editprocess(Board board);
+	public void WriteDelete(Board board);
 }
 
 
