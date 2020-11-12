@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.lcomputerstudy3.example.domain.Board;
 import com.lcomputerstudy3.example.domain.Pagination;
 import com.lcomputerstudy3.example.domain.User;
+import com.lcomputerstudy3.example.domain.Comment;
 import com.lcomputerstudy3.example.service.BoardService;
 import com.lcomputerstudy3.example.service.UserService;
 
@@ -123,7 +124,9 @@ public class Controller {
    @RequestMapping("/board-detail/{bId}")
    public String boardDetail(Model model, @PathVariable("bId") int bId) {
 	   Board board = boardservice.selectBoardDetail(bId);
+	   List<Comment> list=boardservice.selectCommentList();
 	   model.addAttribute("board", board);
+	   model.addAttribute("list",list);
 //	   System.out.println("bId: " + bId);
 	   return "/board-detail";
    }
@@ -138,10 +141,15 @@ public class Controller {
 	   boardservice.Editprocess(board);
 	   return "/editProcess";
    }
-   @RequestMapping("/write-delete")   
-	   public String writedelete(Board board) {
+   @RequestMapping("/write-delete/{bId}")
+   public String  writedelete(Board board, @PathVariable("bId") int bId) {
 	   boardservice.WriteDelete(board);
 	   return "/write-delete";
    }
-}  
+   @RequestMapping("/comment-result")
+   public String replyComment(Model model, Comment comment) {
+	   boardservice.ReplyComment(comment);
+	   return "/comment-result";
+   }
+} 
    

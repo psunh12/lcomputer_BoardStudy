@@ -3,7 +3,7 @@ package com.lcomputerstudy3.example.mapper;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import com.lcomputerstudy3.example.domain.Board;
-
+import com.lcomputerstudy3.example.domain.Comment;
 
 @Mapper
 public interface BoardMapper {
@@ -15,6 +15,8 @@ public interface BoardMapper {
 	public Board selectWriteEdit();
 	public void Editprocess(Board board);
 	public void WriteDelete(Board board);
+	public void ReplyComment(Comment comment);
+	public List<Comment> selectCommentList();
 }
 
 

@@ -2,7 +2,7 @@ package com.lcomputerstudy3.example.service;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.lcomputerstudy3.example.domain.Board;
-
+import com.lcomputerstudy3.example.domain.Comment;
 import org.springframework.stereotype.Service;
 import com.lcomputerstudy3.example.mapper.BoardMapper;
 
@@ -47,7 +47,15 @@ public class BoardServiceImpl implements BoardService {
 	}
 	@Override
 	public void WriteDelete(Board board) {
-		
+		boardMapper.WriteDelete(board);
+	}
+	@Override
+	public void ReplyComment(Comment comment) {
+		boardMapper.ReplyComment(comment);
+	}
+	@Override
+	public List<Comment> selectCommentList() {
+		return boardMapper.selectCommentList();
 	}
 	
 }

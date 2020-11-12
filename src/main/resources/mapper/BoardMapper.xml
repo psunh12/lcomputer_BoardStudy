@@ -47,6 +47,28 @@
 	  </update> 
 	  <delete id="WriteDelete" parameterType="board">
 	  DELETE
-	  FROM
+	  FROM lc_board
+	  WHERE b_id = #{bId}
 	  </delete>
+	  
+	  <insert id="ReplyComment" parameterType="Comment">
+	   	INSERT INTO lc_comment (
+	   		c_id,
+	   		c_comment,
+	   		c_writer
+	   	)VALUES(
+	   		#{cId},
+	   		#{cComment},
+	   		#{cWriter}
+	   	)	
+	   </insert>
+	   
+	   	<select id="selectCommentList" resultType="Comment">
+	      SELECT 		b_id  bId,
+	      				c_id  cId,
+				        c_comment  cComment,
+				        c_writer  cWriter
+		  FROM			lc_comment
+		  WHERE b_id = #{bId}
+	   </select>   
 </mapper>
