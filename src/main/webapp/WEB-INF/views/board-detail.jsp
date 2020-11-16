@@ -69,7 +69,7 @@
 	</tr>
 	<c:forEach items="${list}" var="item">
 		 <tr>
-			<td><a href="/board-detail/${item.bId}">${item.bId }</a></td>
+			<td><a href="/comment-detail/${item.cId}">${item.cId }</a></td>
 			<td>${item.cWriter}</td>
 			<td>${item.cComment}</td>
 	     <tr>

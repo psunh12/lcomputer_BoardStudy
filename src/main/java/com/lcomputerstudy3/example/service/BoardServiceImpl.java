@@ -54,8 +54,20 @@ public class BoardServiceImpl implements BoardService {
 		boardMapper.ReplyComment(comment);
 	}
 	@Override
-	public List<Comment> selectCommentList() {
-		return boardMapper.selectCommentList();
+	public List<Comment> selectCommentList(int bId) {
+		return boardMapper.selectCommentList(bId);
+	}
+	@Override
+	public Comment selectCommentDetail(int cId) {
+		return boardMapper.selectCommentDetail(cId);
+	}
+	@Override
+	public void CommentDelete(Comment comment) {
+		boardMapper.CommentDelete(comment);
+	}
+	@Override
+	public void CommentEditProcess(Comment comment) {
+		boardMapper.CommentEditProcess(comment);
 	}
 	
 }

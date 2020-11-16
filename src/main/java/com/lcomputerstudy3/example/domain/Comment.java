@@ -19,12 +19,6 @@ public class Comment {
 	public void setcComment(String cComment) {
 		this.cComment = cComment;
 	}
-	public String cWriter() {
-		return cWriter;
-	}
-	public void setcWriter(String cWriter) {
-		this.cWriter = cWriter;
-	}
 	public String getcDateTime() {
 		return cDateTime;
 	}
@@ -36,6 +30,12 @@ public class Comment {
 	}
 	public void setbId(int bId) {
 		this.bId = bId;
+	}
+	public String getcWriter() {
+		return cWriter;
+	}
+	public void setcWriter(String cWriter) {
+		this.cWriter = cWriter;
 	}
 		
 

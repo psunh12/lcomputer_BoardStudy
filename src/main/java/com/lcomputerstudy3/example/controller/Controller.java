@@ -124,7 +124,7 @@ public class Controller {
    @RequestMapping("/board-detail/{bId}")
    public String boardDetail(Model model, @PathVariable("bId") int bId) {
 	   Board board = boardservice.selectBoardDetail(bId);
-	   List<Comment> list=boardservice.selectCommentList();
+	   List<Comment> list=boardservice.selectCommentList(bId);
 	   model.addAttribute("board", board);
 	   model.addAttribute("list",list);
 //	   System.out.println("bId: " + bId);
@@ -151,5 +151,26 @@ public class Controller {
 	   boardservice.ReplyComment(comment);
 	   return "/comment-result";
    }
-} 
-   
+   @RequestMapping("/comment-detail/{cId}")
+   public String commentDetail(Model model, @PathVariable("cId") int cId) {
+	   Comment comment = boardservice.selectCommentDetail(cId);
+	   model.addAttribute("comment", comment);
+	   return "/comment-detail";
+   }
+   @RequestMapping("/comment-delete/{cId}")
+   public String commentdelete(Comment comment, @PathVariable("cId") int cId) {
+	   boardservice.CommentDelete(comment);
+	   return "/comment-delete";
+   }
+   @RequestMapping("/comment-edit/{cId}")
+   public String commentEdit(Model model, @PathVariable("cId") int cId) {
+	   Comment comment = boardservice.selectCommentDetail(cId);
+	   model.addAttribute("comment", comment);
+	   return "/comment-edit";
+   }
+   @RequestMapping("/commentProcess")
+   public String commentEditprocess(Comment comment) {
+	   boardservice.CommentEditProcess(comment);
+	   return "/commentProcess";
+   }
+}

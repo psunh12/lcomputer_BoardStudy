@@ -53,22 +53,45 @@
 	  
 	  <insert id="ReplyComment" parameterType="Comment">
 	   	INSERT INTO lc_comment (
+	   		b_id,
 	   		c_id,
 	   		c_comment,
 	   		c_writer
 	   	)VALUES(
+	   		#{bId},
 	   		#{cId},
 	   		#{cComment},
 	   		#{cWriter}
 	   	)	
 	   </insert>
 	   
-	   	<select id="selectCommentList" resultType="Comment">
-	      SELECT 		b_id  bId,
+	   	<select id="selectCommentList" parameterType="int" resultType="Comment">
+	      SELECT 		
 	      				c_id  cId,
 				        c_comment  cComment,
-				        c_writer  cWriter
+				        c_writer  cWriter,
+				        c_datetime 	cDateTime
 		  FROM			lc_comment
 		  WHERE b_id = #{bId}
-	   </select>   
+	   </select>
+	   
+	   <select id="selectCommentDetail" parameterType="int" resultType="comment">
+			SELECT
+						c_id  cId,
+				        c_comment  cComment,
+				        c_writer  cWriter,
+				        c_datetime 	cDateTime
+		  	FROM		lc_comment
+			WHERE 		c_id = #{cId}
+	  </select>  
+	  <delete id="CommentDelete" parameterType="comment">
+	  	DELETE
+	  	FROM lc_comment
+	  	WHERE c_id = #{cId}
+	  </delete>
+	  <update id="CommentEditProcess" parameterType="comment">
+	  	UPDATE 	lc_comment
+	  	SET 	c_comment = #{cComment}
+	  	WHERE 	c_id = #{cId}
+	  </update> 
 </mapper>

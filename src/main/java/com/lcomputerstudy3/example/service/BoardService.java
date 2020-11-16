@@ -18,6 +18,9 @@ public interface BoardService {
 	public void Editprocess(Board board);
 	public void WriteDelete(Board board);
 	public void ReplyComment(Comment comment);
-	public List<Comment> selectCommentList();
-
+	public List<Comment> selectCommentList(int bId);
+	public Comment selectCommentDetail(int cId);
+	public void CommentDelete(Comment comment);
+	public void CommentEditProcess(Comment comment);
+	
 }
