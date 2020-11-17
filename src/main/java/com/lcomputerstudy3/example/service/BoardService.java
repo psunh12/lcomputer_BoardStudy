@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.lcomputerstudy3.example.domain.Board;
 import com.lcomputerstudy3.example.domain.Comment;
+import com.lcomputerstudy3.example.domain.Reply;
 
 
 public interface BoardService {
@@ -22,5 +23,6 @@ public interface BoardService {
 	public Comment selectCommentDetail(int cId);
 	public void CommentDelete(Comment comment);
 	public void CommentEditProcess(Comment comment);
+	public void createReply(Reply reply);
 	
 }

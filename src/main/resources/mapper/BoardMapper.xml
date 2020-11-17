@@ -93,5 +93,17 @@
 	  	UPDATE 	lc_comment
 	  	SET 	c_comment = #{cComment}
 	  	WHERE 	c_id = #{cId}
-	  </update> 
+	  </update>
+	  
+	  <insert id="createReply" parameterType="reply">
+	   	INSERT INTO lc_reply (
+	   		r_title,
+	   		r_reply,
+	   		r_writer
+	   	)VALUES(
+	   		#{rTitle},
+	   		#{rReply},
+	   		#{rWriter}
+	   	)	
+	   </insert> 
 </mapper>

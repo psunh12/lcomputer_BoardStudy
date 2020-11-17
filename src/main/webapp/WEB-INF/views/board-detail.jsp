@@ -48,6 +48,9 @@
 			<td>${board.bWriter}</td>
      	</tr>	
 		<tr style="height:50px;">
+			<td style="border:none;">
+				<a href="/reply/${board.bId}" style="width:70%;font-weight:700;background-color:#818181;color:#fff;" >답글작성</a>
+			</td>
 			<sec:authorize access="${ principal.uName == board.bWriter}">
 			<td style="border:none;">
 				<a href="/write-edit/${board.bId}" style="width:70%;font-weight:700;background-color:#818181;color:#fff;" >수정</a>

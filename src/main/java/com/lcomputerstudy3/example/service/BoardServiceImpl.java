@@ -3,6 +3,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.lcomputerstudy3.example.domain.Board;
 import com.lcomputerstudy3.example.domain.Comment;
+import com.lcomputerstudy3.example.domain.Reply;
+
 import org.springframework.stereotype.Service;
 import com.lcomputerstudy3.example.mapper.BoardMapper;
 
@@ -68,6 +70,10 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void CommentEditProcess(Comment comment) {
 		boardMapper.CommentEditProcess(comment);
+	}
+	@Override
+	public void createReply(Reply reply) {
+		boardMapper.createReply(reply);
 	}
 	
 }
