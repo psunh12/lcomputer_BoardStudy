@@ -4,7 +4,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import com.lcomputerstudy3.example.domain.Board;
 import com.lcomputerstudy3.example.domain.Comment;
-import com.lcomputerstudy3.example.domain.Reply;
 @Mapper
 public interface BoardMapper {
 	public List<Board> selectBoardList(int pageNum);
@@ -20,7 +19,6 @@ public interface BoardMapper {
 	public Comment selectCommentDetail(int cId);
 	public void CommentDelete(Comment comment);
 	public void CommentEditProcess(Comment comment);
-	public void createReply(Reply reply);
 	
 }
 

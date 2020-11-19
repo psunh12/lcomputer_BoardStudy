@@ -2,6 +2,8 @@ package com.lcomputerstudy3.example.domain;
 
 public class Board {
 	private int bId;
+	private int bGroup;
+	private int bOrder;
 	private String bTitle;
 	private String bContent;
 	private String bWriter;
@@ -37,6 +39,18 @@ public class Board {
 	}
 	public void setbDateTime(String bDateTime) {
 		this.bDateTime = bDateTime;
+	}
+	public int getbGroup() {
+		return bGroup;
+	}
+	public void setbGroup(int bGroup) {
+		this.bGroup = bGroup;
+	}
+	public int getbOrder() {
+		return bOrder;
+	}
+	public void setbOrder(int bOrder) {
+		this.bOrder = bOrder;
 	}
 
 }

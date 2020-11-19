@@ -17,7 +17,6 @@ import com.lcomputerstudy3.example.domain.Board;
 import com.lcomputerstudy3.example.domain.Pagination;
 import com.lcomputerstudy3.example.domain.User;
 import com.lcomputerstudy3.example.domain.Comment;
-import com.lcomputerstudy3.example.domain.Reply;
 import com.lcomputerstudy3.example.service.BoardService;
 import com.lcomputerstudy3.example.service.UserService;
 
@@ -175,12 +174,16 @@ public class Controller {
 	   return "/commentProcess";
    }
    @RequestMapping("/reply/{bId}")
-   public String reply(Model model, @PathVariable("bId") int bId) {
+   public String reply(Board board, @PathVariable("bId") int bId) {
 	   return "/reply";
    }
+ 
    @RequestMapping("/reply-process")
-   public String replyprocess(Reply reply) {
-	   boardservice.createReply(reply);
-	   return "/reply-process";
+   public String createReply(Model model, Board board) {
+	   boardservice.createBoard(board);
+	   // boardservice.createReply(board);
+	   //model.addAttribute("board", board);
+	   return "redirect:/board-detail/" + board.getbId();
    }
+
 }

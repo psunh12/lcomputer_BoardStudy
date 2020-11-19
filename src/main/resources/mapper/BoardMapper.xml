@@ -2,25 +2,39 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lcomputerstudy3.example.mapper.BoardMapper">
 	<select id="selectBoardList" parameterType="int" resultType="Board">
-	      SELECT 		@ROWNUM := @ROWNUM -1 AS ROWNUM,
-	      				ta.b_id as bId,
+      <!-- SELECT 		@ROWNUM := @ROWNUM -1 AS ROWNUM,
+      				ta.b_id as bId,
+			        ta.b_title as bTitle,
+			        ta.b_content as bContent,
+			        ta.b_writer as bWriter
+	  FROM			lc_board ta,
+	  				(SELECT @ROWNUM := (SELECT COUNT(*) - #{pageNum} + 1 FROM lc_board ta)) tb
+	  LIMIT			#{pageNum}, 3		
+	   -->
+		SELECT 			ta.b_id as bId,
 				        ta.b_title as bTitle,
 				        ta.b_content as bContent,
-				        ta.b_writer as bWriter
-		  FROM			lc_board ta,
-		  				(SELECT @ROWNUM := (SELECT COUNT(*) - #{pageNum} + 1 FROM lc_board ta)) tb
-		  LIMIT			#{pageNum}, 3		
+				        ta.b_writer as bWriter,
+				        ta.b_group as bGroup,
+				        ta.b_order as bOrder
+		FROM 			lc_board ta
+		ORDER BY 		b_group DESC, b_order asc
+		LIMIT			#{pageNum}, 5
 	   </select>
 	   
 	   <insert id="createBoard" parameterType="Board">
 	   	INSERT INTO lc_board (
 	   		b_title,
 	   		b_content,
-	   		b_writer
+	   		b_writer,
+	   		b_group,
+	   		b_order
 	   	)VALUES(
 	   		#{bTitle},
 	   		#{bContent},
-	   		#{bWriter}
+	   		#{bWriter},
+	   		#{bGroup},
+	   		#{bOrder}
 	   	)	
 	   </insert>
 	  
@@ -95,15 +109,4 @@
 	  	WHERE 	c_id = #{cId}
 	  </update>
 	  
-	  <insert id="createReply" parameterType="reply">
-	   	INSERT INTO lc_reply (
-	   		r_title,
-	   		r_reply,
-	   		r_writer
-	   	)VALUES(
-	   		#{rTitle},
-	   		#{rReply},
-	   		#{rWriter}
-	   	)	
-	   </insert> 
 </mapper>

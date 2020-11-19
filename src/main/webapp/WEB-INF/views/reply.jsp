@@ -8,16 +8,19 @@
 <meta charset="UTF-8">
 <title>답글작성</title>
 </head>
-<h1>답글작성</h1>
 <body>
+<h1>답글작성</h1>
+</body>
 <sec:authentication property="principal" var="principal"/>
 <form action="/reply-process" method="post">
-	<input type="hidden" name="rWriter" value="${principal.uName }">
-	<input type="hidden" name="bId" value="${board.bId}">
+	<input type="hidden" name="bWriter" value="${principal.uName }">
+	<input type="hidden" name="bId" value="${bId}">
+	<input type="hidden" name="bGroup" value="${bGroup}">
+	<input type="hidden" name="bOrder" value="${bOrder}">
 	<p> 작성자 : ${principal.uName }</p>
-	<P> 제목 : RE: <input type="text" name="rTitle" placeholder="제목을 입력하세요."></P>
-	<textarea  name="rReply" rows="10" cols="100" placeholder="내용을 입력하세요"></textarea>
+	<P> 제목 : <input type="text" name="bTitle" placeholder="제목을 입력하세요"></P>
+	<textarea  name="bContent" rows="10" cols="100" placeholder="내용을 입력하세요"></textarea>
 	<input type="submit" value="답글작성">	
 </form>
-</body>
+
 </html>

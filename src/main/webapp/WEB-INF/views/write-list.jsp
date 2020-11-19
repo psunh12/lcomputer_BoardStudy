@@ -48,17 +48,29 @@
 <h1>글목록</h1>
 <table >
 	<tr>
-		<td colspan = "3" >전체 게시글 수 : ${pagination.count }</td>
+		<td colspan = "4" >전체 게시글 수 : ${pagination.count }</td>
 	</tr>
 	
 	<tr>
 		<th>No</th>
+		<th>답글번호</th>
 		<th>ID</th>
 		<th>내용</th>
 	</tr>
 	<c:forEach items="${list}" var="item">
-		 <tr>
-			<td><a href="/board-detail/${item.bId}">${item.bId }</a></td>
+		 <c:choose>
+		 	<c:when test="${item.bOrder > 1}">
+		 		<c:set var="replyColor" value="background-color: gray" />
+		 		<c:set var="replyIcon" value="<img src='https://static.thenounproject.com/png/88514-200.png' style='width: 20px; height: 15px;'>" />
+		 	</c:when>
+		 	<c:otherwise>
+		 		<c:set var="replyColor" value="background-color: white" />
+		 		<c:set var="replyIcon" value="" />
+    		</c:otherwise>
+		 </c:choose>
+		 <tr style="${replyColor}">
+			<td>${replyIcon}<a href="/board-detail/${item.bId}">${item.bId }</a></td>
+			<td>${item.bOrder}</td>
 			<td>${item.bWriter}</td>
 			<td>${item.bContent}</td>
 	     <tr>
