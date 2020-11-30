@@ -8,7 +8,15 @@ public class Board {
 	private String bContent;
 	private String bWriter;
 	private String bDateTime;
+	//private int MaxbId;
 	
+	//public Board(){
+	
+	//}
+	//public Board(int bId) {
+		//MaxbId=(bId+1);
+	//}
+
 	public int getbId() {
 		return bId;
 	}
@@ -52,6 +60,12 @@ public class Board {
 	public void setbOrder(int bOrder) {
 		this.bOrder = bOrder;
 	}
+	//public int getMaxbId() {
+	//	return MaxbId;
+	//}
+	//public void setMaxbId(int MaxbId) {
+	//	this.MaxbId = MaxbId;
+	//}
 
 }
 	

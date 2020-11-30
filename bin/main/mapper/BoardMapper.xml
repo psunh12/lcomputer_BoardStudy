@@ -23,20 +23,30 @@
 	   </select>
 	   
 	   <insert id="createBoard" parameterType="Board">
-	   	INSERT INTO lc_board (
-	   		b_title,
-	   		b_content,
-	   		b_writer,
-	   		b_group,
-	   		b_order
-	   	)VALUES(
-	   		#{bTitle},
-	   		#{bContent},
-	   		#{bWriter},
-	   		#{bGroup},
-	   		#{bOrder}
-	   	)	
+			INSERT INTO lc_board (
+				b_title,
+				b_content,
+				b_writer,
+				b_group,
+				b_order
+			)VALUES(
+				#{bTitle},
+				#{bContent},
+				#{bWriter},
+				#{bId},
+				#{bOrder}+#{bOrder}+1
+			)
+		   	<selectKey keyProperty="bId" resultType="int" order="AFTER">
+	    		SELECT LAST_INSERT_ID()
+	  		</selectKey>
+	  		
 	   </insert>
+	   
+	   <update id="updateGroup" parameterType="Board">
+	   	UPDATE lc_board 
+		SET b_group	= #{bId}
+	  	WHERE b_id = #{bId}
+	   </update>
 	  
 	  <select id="selectBoardCount" resultType="Int">
 	  	SELECT COUNT(*) count 

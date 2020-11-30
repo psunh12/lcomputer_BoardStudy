@@ -23,7 +23,13 @@ public class BoardServiceImpl implements BoardService {
 	}
 	@Override
 	public void createBoard(Board board) {
+		// 새글 등록 시 bId = 0, 답글 bId = n
+		int bId = board.getbId();
+		
 		boardMapper.createBoard(board);
+		if (bId == 0) {
+			boardMapper.updateGroup(board);
+		}
 		
 	}
 	@Override
@@ -71,6 +77,5 @@ public class BoardServiceImpl implements BoardService {
 		boardMapper.CommentEditProcess(comment);
 	}
 
-	
 }
 

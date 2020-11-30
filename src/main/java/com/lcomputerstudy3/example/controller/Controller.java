@@ -93,7 +93,7 @@ public class Controller {
 	   return "/denied";
    }
    @RequestMapping(value="/write")
-   public String write(Model model) {
+   public String write(Board board) {
 	   return "/write";
    }
    
@@ -113,11 +113,12 @@ public class Controller {
    }
    
    @RequestMapping("/write-process")
-   public String writeprocess(Board board) {
+   public String writeprocess(Model model,Board board) {
  
 	   //board.setbId("b_id"));
 	   
 	   boardservice.createBoard(board);
+	   System.out.println("lastinsertid::::: "+board.getbId());
 	 
 	   return "/write-result";
    }

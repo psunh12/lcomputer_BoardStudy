@@ -19,6 +19,7 @@ public interface BoardMapper {
 	public Comment selectCommentDetail(int cId);
 	public void CommentDelete(Comment comment);
 	public void CommentEditProcess(Comment comment);
+	public void updateGroup(Board board);
 	
 }
 
