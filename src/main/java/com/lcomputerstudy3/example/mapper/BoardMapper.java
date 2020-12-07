@@ -20,7 +20,9 @@ public interface BoardMapper {
 	public void CommentDelete(Comment comment);
 	public void CommentEditProcess(Comment comment);
 	public void updateGroup(Board board);
-	
+	public void createReply(Board board);
+	public void selectMaxOrder(Board board);
+	public void updateOrder(Board board);
 }
 
 

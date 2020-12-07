@@ -76,6 +76,18 @@ public class BoardServiceImpl implements BoardService {
 	public void CommentEditProcess(Comment comment) {
 		boardMapper.CommentEditProcess(comment);
 	}
+	@Override
+	public void createReply(Board board) {
+		boardMapper.createReply(board);
+	}
+	@Override
+	public void selectMaxOrder(Board board) {
+		boardMapper.selectMaxOrder(board);
+	}
+	@Override
+	public void updateOrder(Board board) {
+		boardMapper.updateOrder(board);	
+	}	
 
 }
 

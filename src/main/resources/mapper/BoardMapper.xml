@@ -34,7 +34,7 @@
 				#{bContent},
 				#{bWriter},
 				#{bId},
-				#{bOrder}+#{bOrder}+1
+				#{bOrder}
 			)
 		   	<selectKey keyProperty="bId" resultType="int" order="AFTER">
 	    		SELECT LAST_INSERT_ID()
@@ -119,4 +119,37 @@
 	  	WHERE 	c_id = #{cId}
 	  </update>
 	  
+		<insert id="createReply" parameterType="Board">
+			INSERT INTO lc_board (
+				b_title,
+				b_content,
+				b_writer,
+				b_group,
+				b_order
+			)VALUES(
+				#{bTitle},
+				#{bContent},
+				#{bWriter},
+				#{bId},
+				#{bOrder}+1
+			)
+		   	<selectKey keyProperty="bId" resultType="int" order="AFTER">
+	    		SELECT LAST_INSERT_ID()
+	  		</selectKey>
+  		
+		</insert>
+		<select id="selectMaxOrder" parameterType="int" resultType="comment">>
+	  		SELECT		b_group, 
+						max(b_order)+1 AS max_order
+			FROM		lc_board ta	
+			WHERE 		b_group =#{bGroup}
+		</select>
+		
+		<update id="updateOrder" parameterType="Board">
+		UPDATE 	lc_board
+	  	SET 	b_order = #{bOrder}
+	  	WHERE 	b_id = #{bId}
+		
+		
+		</update>	
 </mapper>

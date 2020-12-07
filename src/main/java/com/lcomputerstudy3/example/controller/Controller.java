@@ -181,9 +181,14 @@ public class Controller {
  
    @RequestMapping("/reply-process")
    public String createReply(Model model, Board board) {
-	   boardservice.createBoard(board);
+	   boardservice.createReply(board);
 	   // boardservice.createReply(board);
 	   //model.addAttribute("board", board);
+	   
+	   // max order 가져오기
+	   boardservice.selectMaxOrder(board);
+	   // 해당 bId 게시물의 bOrder +1로 업데이트 하기
+	   boardservice.updateOrder(board);
 	   return "redirect:/board-detail/" + board.getbId();
    }
 
