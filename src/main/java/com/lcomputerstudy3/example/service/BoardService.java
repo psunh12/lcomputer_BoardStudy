@@ -23,7 +23,7 @@ public interface BoardService {
 	public void CommentDelete(Comment comment);
 	public void CommentEditProcess(Comment comment);
 	public void createReply(Board board);
-	public void selectMaxOrder(Board board);
+	public Board selectMaxOrder(Board board);
 	public void updateOrder(Board board);
 	
 }

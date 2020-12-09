@@ -81,8 +81,8 @@ public class BoardServiceImpl implements BoardService {
 		boardMapper.createReply(board);
 	}
 	@Override
-	public void selectMaxOrder(Board board) {
-		boardMapper.selectMaxOrder(board);
+	public Board selectMaxOrder(Board board) {
+		return boardMapper.selectMaxOrder(board);
 	}
 	@Override
 	public void updateOrder(Board board) {

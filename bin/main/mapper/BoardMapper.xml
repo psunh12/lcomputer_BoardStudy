@@ -34,7 +34,7 @@
 				#{bContent},
 				#{bWriter},
 				#{bId},
-				#{bOrder}
+				#{bOrder}+1
 			)
 		   	<selectKey keyProperty="bId" resultType="int" order="AFTER">
 	    		SELECT LAST_INSERT_ID()
@@ -138,18 +138,21 @@
 	  		</selectKey>
   		
 		</insert>
-		<select id="selectMaxOrder" parameterType="int" resultType="comment">>
+		<select id="selectMaxOrder" parameterType="int" resultType="board">
 	  		SELECT		b_group, 
 						max(b_order)+1 AS max_order
-			FROM		lc_board ta	
-			WHERE 		b_group =#{bGroup}
+			FROM		lc_board ta
+			WHERE 		
+						b_group = #{bGroup}
 		</select>
 		
 		<update id="updateOrder" parameterType="Board">
-		UPDATE 	lc_board
-	  	SET 	b_order = #{bOrder}
-	  	WHERE 	b_id = #{bId}
-		
-		
+			UPDATE 	lc_board
+	  		SET 	b_order =( 	SELECT 		max(b_order)+1 AS max_order 
+		  						FROM		lc_board
+		  						WHERE 		b_group =#{bGroup}
+		  					)
+	  		WHERE 	
+		  			b_id = #{bId}
 		</update>	
 </mapper>

@@ -8,6 +8,7 @@ public class Board {
 	private String bContent;
 	private String bWriter;
 	private String bDateTime;
+	public static final int startOrder=1;
 	//private int MaxbId;
 	
 	//public Board(){
@@ -59,6 +60,9 @@ public class Board {
 	}
 	public void setbOrder(int bOrder) {
 		this.bOrder = bOrder;
+	}
+	public int getstartOrder() {
+		return startOrder;
 	}
 	//public int getMaxbId() {
 	//	return MaxbId;

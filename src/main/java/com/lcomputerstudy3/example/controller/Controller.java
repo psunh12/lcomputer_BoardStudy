@@ -186,10 +186,19 @@ public class Controller {
 	   //model.addAttribute("board", board);
 	   
 	   // max order 가져오기
-	   boardservice.selectMaxOrder(board);
+	   //Board tmpBoard = boardservice.selectMaxOrder(board);
 	   // 해당 bId 게시물의 bOrder +1로 업데이트 하기
 	   boardservice.updateOrder(board);
 	   return "redirect:/board-detail/" + board.getbId();
+   }
+   
+   @RequestMapping("/comment-list")
+   public String commentList(Model model, Comment comment) {
+	   boardservice.ReplyComment(comment);
+	   List<Comment> list=boardservice.selectCommentList(comment.getbId());
+	   model.addAttribute("list",list);
+	   
+	   return "/comment-list";
    }
 
 }

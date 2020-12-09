@@ -16,7 +16,6 @@
 	<input type="hidden" name="bWriter" value="${principal.uName }">
 	<input type="hidden" name="bId" value="${bId}">
 	<input type="hidden" name="bGroup" value="${bId}">
-	<input type="hidden" name="bOrder" value="${board.bOrder}">
 	<p> 작성자 : ${principal.uName }</p>
 	<P> 제목 : <input type="text" name="bTitle" placeholder="제목을 입력하세요"></P>
 	<textarea  name="bContent" rows="10" cols="100" placeholder="내용을 입력하세요"></textarea>
