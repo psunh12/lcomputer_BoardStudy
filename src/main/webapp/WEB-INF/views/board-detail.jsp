@@ -92,24 +92,25 @@
 				<th>No</th>
 				<th>작성자</th>
 				<th>댓글</th>
+				<th></th>
 			</tr>
 			<c:forEach items="${list}" var="item">
-				 <tr>
+				<tr>
 					<td><a href="/comment-detail/${item.cId}">${item.cId }</a></td>
 					<td>${item.cWriter}</td>
-					<td>${item.cComment}</td>
-			     </tr>
-					<sec:authorize access="${ principal.uName == board.bWriter}">
-					<td style="border:none;">
-						<a href="/commentProcess/${board.bId}" style="width:70%;font-weight:70;background-color:#818181;color:#fff;" >수정</a>
+					<td style="width: 500px;">${item.cComment}</td>
+					<td>
+						<sec:authorize access="${ principal.uName == board.bWriter}">
+							<!-- a href="/commentProcess/${board.bId}" id='editcomment' style="width:70%;font-weight:70;background-color:#818181;color:#fff;" >수정</a-->
+							<button class="editcomment">수정</button>	
+						</sec:authorize>
+						<sec:authorize access="hasRole('ROLE_ADMIN') or ${ principal.uName == board.bWriter }">
+							<!-- a href="/comment-delete/${board.bId}"style="width:70%;font-weight:70;background-color:red;color:#fff;">삭제</a-->
+							<button class="deletecomment">삭제</button>
+						</sec:authorize>
 					</td>
-					</sec:authorize>
-					<sec:authorize access="hasRole('ROLE_ADMIN') or ${ principal.uName == board.bWriter }">
-					<td style="border:none;">
-						<a href="/comment-delete/${board.bId}"style="width:70%;font-weight:70;background-color:red;color:#fff;">삭제</a>
-					</td>
-					</sec:authorize>
-					</c:forEach>
+			    </tr>
+			</c:forEach>
 		</table>
 	</div>
 	
@@ -140,7 +141,51 @@ $(document).on('click', '#btn-comment', function () {
 		$('#txt-comment').val('');
 		//console.log("console: "+html);
 	});
+});
+
+
+// 댓글 수정 폼 클릭 이벤트 핸들러
+$(document).on('click', '.editcomment', function () {
+
+	let commentValue = $(this).parent().prev().text();
+	let input = "<input type='text' class='commentContent' size=50 value='"+ commentValue +"'>";
+
+	$(this).text('등록');
+	$(this).attr('class', 'editcomment2');
 	
+	$(this).parent().prev().html(input);
+/*	let txtComment = $('#txt-comment').val();
+
+	$.ajax({
+		method: "POST",
+		url: "/comment-list",
+		data: {
+				cComment: txtComment,
+				cWriter: '${principal.uName}',
+				bId: ${board.bId}
+			  }
+	})
+	.done(function( html ) {
+		console.log(html);
+	});*/
+});	
+
+//댓글 수정 클릭 이벤트 핸들러
+$(document).on('click', '.editcomment2', function () {
+	
+	$.ajax({
+		method: "POST",
+		url: "/comment-list",
+		data: {
+				cComment: txtComment,
+				cWriter: '${principal.uName}',
+				bId: ${board.bId}
+			  }
+	})
+	.done(function( html ) {
+		console.log(html);
+	});
+	//수정된 페이지가 연결되도록 !!!!
 });
 </script>
 

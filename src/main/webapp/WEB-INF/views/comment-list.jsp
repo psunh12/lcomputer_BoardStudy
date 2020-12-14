@@ -14,6 +14,7 @@
 		<td><a href="/comment-detail/${item.cId}">${item.cId }</a></td>
 		<td>${item.cWriter}</td>
 		<td>${item.cComment}</td>
-     <tr>
+     </tr>
+
 	</c:forEach>
 </table>
