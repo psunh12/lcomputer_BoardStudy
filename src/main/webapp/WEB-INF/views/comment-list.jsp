@@ -13,7 +13,15 @@
 	 <tr>
 		<td><a href="/comment-detail/${item.cId}">${item.cId }</a></td>
 		<td>${item.cWriter}</td>
-		<td>${item.cComment}</td>
+		<td style="width: 500px;">${item.cComment}</td>
+					<td>
+						<sec:authorize access="${ principal.uName == board.bWriter}">
+							<button class="editcomment">수정</button>	
+						</sec:authorize>
+						<sec:authorize access="hasRole('ROLE_ADMIN') or ${ principal.uName == board.bWriter }">
+							<button class="deletecomment">삭제</button>
+						</sec:authorize>
+					</td>
      </tr>
 
 	</c:forEach>

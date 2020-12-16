@@ -86,7 +86,9 @@
 	   		#{cId},
 	   		#{cComment},
 	   		#{cWriter}
-	   	)	
+	   	)
+	   	ON DUPLICATE KEY UPDATE
+	   		c_comment = #{cComment}
 	   </insert>
 	   
 	   	<select id="selectCommentList" parameterType="int" resultType="Comment">

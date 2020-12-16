@@ -172,6 +172,7 @@ $(document).on('click', '.editcomment', function () {
 
 //댓글 수정 클릭 이벤트 핸들러
 $(document).on('click', '.editcomment2', function () {
+	let txtComment = $(this).parent().prev().find('input').val();
 	
 	$.ajax({
 		method: "POST",
@@ -184,9 +185,26 @@ $(document).on('click', '.editcomment2', function () {
 	})
 	.done(function( html ) {
 		console.log(html);
+		$('#div-comment').html(html);
+		//$('.editcomment').val('');	
 	});
-	//수정된 페이지가 연결되도록 !!!!
 });
+
+//수정 응용해서 삭제 해보기
+/*$(document).on('click', '.deletecomment', function () {
+	$.ajax({
+		method: "POST",
+		url: "/comment-list",
+		data: {
+				cComment: txtComment,
+				cWriter: '${principal.uName}',
+				bId: ${board.bId}
+			  }
+	})
+	.done(function( html ) {
+	$('.comment-list').remove(data); 
+	});
+});	*/
 </script>
 
 </body>
