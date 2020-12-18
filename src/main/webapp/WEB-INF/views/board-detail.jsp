@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>글 상세</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
 <style>
 	.comment-list table{
 		border-collapse:collapse;
@@ -102,11 +103,11 @@
 					<td>
 						<sec:authorize access="${ principal.uName == board.bWriter}">
 							<!-- a href="/commentProcess/${board.bId}" id='editcomment' style="width:70%;font-weight:70;background-color:#818181;color:#fff;" >수정</a-->
-							<button class="editcomment">수정</button>	
+							<button class="editcomment" cId="${item.cId }">수정</button>	
 						</sec:authorize>
 						<sec:authorize access="hasRole('ROLE_ADMIN') or ${ principal.uName == board.bWriter }">
 							<!-- a href="/comment-delete/${board.bId}"style="width:70%;font-weight:70;background-color:red;color:#fff;">삭제</a-->
-							<button class="deletecomment">삭제</button>
+							<button class="deletecomment" cId="${item.cId }" >삭제</button>
 						</sec:authorize>
 					</td>
 			    </tr>
@@ -152,7 +153,6 @@ $(document).on('click', '.editcomment', function () {
 
 	$(this).text('등록');
 	$(this).attr('class', 'editcomment2');
-	
 	$(this).parent().prev().html(input);
 /*	let txtComment = $('#txt-comment').val();
 
@@ -172,15 +172,17 @@ $(document).on('click', '.editcomment', function () {
 
 //댓글 수정 클릭 이벤트 핸들러
 $(document).on('click', '.editcomment2', function () {
+	let cId = $(this).attr('cId');
 	let txtComment = $(this).parent().prev().find('input').val();
-	
 	$.ajax({
 		method: "POST",
 		url: "/comment-list",
 		data: {
 				cComment: txtComment,
 				cWriter: '${principal.uName}',
-				bId: ${board.bId}
+				bId: ${board.bId},
+				cId:cId
+				
 			  }
 	})
 	.done(function( html ) {
@@ -190,21 +192,26 @@ $(document).on('click', '.editcomment2', function () {
 	});
 });
 
-//수정 응용해서 삭제 해보기
-/*$(document).on('click', '.deletecomment', function () {
+//삭제
+$(document).on('click', '.deletecomment', function () {
+	let txtComment = $('#txt-comment').val();
+	let cId = $(this).attr('cId');
+	
 	$.ajax({
 		method: "POST",
-		url: "/comment-list",
+		url: "/comment-remove",
 		data: {
 				cComment: txtComment,
 				cWriter: '${principal.uName}',
-				bId: ${board.bId}
-			  }
+				bId: ${board.bId},
+				cId:cId
+		  }
 	})
 	.done(function( html ) {
-	$('.comment-list').remove(data); 
+		console.log(html);
+		$('#div-comment').html(html);
 	});
-});	*/
+});
 </script>
 
 </body>

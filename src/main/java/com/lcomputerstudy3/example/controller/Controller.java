@@ -164,10 +164,9 @@ public class Controller {
 	   return "/comment-delete";
    }
    @RequestMapping("/comment-edit/{cId}")
-   public String commentEdit(Model model, @PathVariable("cId") int cId) {
-	   Comment comment = boardservice.selectCommentDetail(cId);
-	   model.addAttribute("comment", comment);
-	   return "/comment-edit";
+   public String commentEdit(Model model, @PathVariable("cId") int cId, Comment comment) {
+	   boardservice.ReplyComment(comment);
+	   return "/comment-list";
    }
    @RequestMapping("/commentProcess")
    public String commentEditprocess(Comment comment) {
@@ -198,6 +197,13 @@ public class Controller {
 	   List<Comment> list=boardservice.selectCommentList(comment.getbId());
 	   model.addAttribute("list",list);
 	   
+	   return "/comment-list";
+   }
+   @RequestMapping("/comment-remove")
+   public String commentdelete(Model model,Comment comment) {
+	   boardservice.CommentDelete(comment);
+	   List<Comment> list=boardservice.selectCommentList(comment.getbId());
+	   model.addAttribute("list",list);
 	   return "/comment-list";
    }
 
