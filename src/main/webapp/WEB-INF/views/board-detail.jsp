@@ -56,6 +56,7 @@
 </head>
 <body>
 	<sec:authentication property="principal" var="principal"/>
+	
 	<h1>글상세</h1>
 	<table>
 		<tr>
@@ -101,11 +102,11 @@
 					<td>${item.cWriter}</td>
 					<td style="width: 500px;">${item.cComment}</td>
 					<td>
-						<sec:authorize access="${ principal.uName == board.bWriter}">
+						<sec:authorize access="${ principal.uName == item.cWriter}">
 							<!-- a href="/commentProcess/${board.bId}" id='editcomment' style="width:70%;font-weight:70;background-color:#818181;color:#fff;" >수정</a-->
 							<button class="editcomment" cId="${item.cId }">수정</button>	
 						</sec:authorize>
-						<sec:authorize access="hasRole('ROLE_ADMIN') or ${ principal.uName == board.bWriter }">
+						<sec:authorize access="hasRole('ROLE_ADMIN') or ${ principal.uName == item.cWriter }">
 							<!-- a href="/comment-delete/${board.bId}"style="width:70%;font-weight:70;background-color:red;color:#fff;">삭제</a-->
 							<button class="deletecomment" cId="${item.cId }" >삭제</button>
 						</sec:authorize>

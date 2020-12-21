@@ -157,5 +157,13 @@
 		  					)
 	  		WHERE 	
 		  			b_id = #{bId}
-		</update>	
+		</update>
+		
+		<select id="selectSearchPost" resultType="Board">
+		SELECT	*
+		FROM 	lc_board
+		WHERE 	b_content LIKE 	'%keyword%'
+		OR 		b_writer LIKE 	'%keyword%'
+		OR 		b_title LIKE 	'%keyword%'
+		</select>	
 </mapper>

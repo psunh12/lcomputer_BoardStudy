@@ -3,6 +3,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.lcomputerstudy3.example.domain.Board;
 import com.lcomputerstudy3.example.domain.Comment;
+import com.lcomputerstudy3.example.domain.Search;
 
 import org.springframework.stereotype.Service;
 import com.lcomputerstudy3.example.mapper.BoardMapper;
@@ -87,7 +88,11 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void updateOrder(Board board) {
 		boardMapper.updateOrder(board);	
-	}	
+	}
+	@Override
+	public List<Board> selectSearchPost(Search search) {
+		return boardMapper.selectSearchPost(search);
+	}
 
 }
 

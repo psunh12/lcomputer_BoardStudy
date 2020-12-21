@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>글목록</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 </head>
 <style>
 	h1{
@@ -46,15 +47,29 @@
 </style>
 <body>
 <h1>글목록</h1>
+<div id ="search">
+<form action="/search" method="post">	
+	
+		<select class="controlbox" name="serchType">
+			<option value="아이디">아이디</option>
+			<option value="제목">제목</option>
+			<option value="내용">내용</option>			
+		</select>
+<input type="text" name="searchbox" size="30"> <button id="gosearch">검색하기</button>
+</form>
+</div>
+<p></p>
+
 <table >
 	<tr>
-		<td colspan = "4" >전체 게시글 수 : ${pagination.count }</td>
+		<td colspan = "5" >전체 게시글 수 : ${pagination.count }</td>
 	</tr>
 	
 	<tr>
 		<th>No</th>
 		<th>답글번호</th>
 		<th>ID</th>
+		<th>제목</th>
 		<th>내용</th>
 	</tr>
 	<c:forEach items="${list}" var="item">
@@ -72,6 +87,7 @@
 			<td>${replyIcon}<a href="/board-detail/${item.bId}">${item.bId }</a></td>
 			<td>${item.bOrder}</td>
 			<td>${item.bWriter}</td>
+			<td>${item.bTitle}</td>
 			<td>${item.bContent}</td>
 	     <tr>
 	</c:forEach>
@@ -110,5 +126,6 @@
 		</c:when>
 	</c:choose>			
 </div>
+
 </body>
 </html>
