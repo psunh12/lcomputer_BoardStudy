@@ -48,18 +48,16 @@
 <body>
 <h1>글목록</h1>
 <div id ="search">
-<form action="/search" method="post">	
-	
-		<select class="controlbox" name="serchType">
-			<option value="아이디">아이디</option>
-			<option value="제목">제목</option>
-			<option value="내용">내용</option>			
+		<select class="controlbox" name="searchType">
+			<option value="id">아이디</option>
+			<option value="title">제목</option>
+			<option value="content">내용</option>			
 		</select>
-<input type="text" name="searchbox" size="30"> <button id="gosearch">검색하기</button>
-</form>
+<input type="text" name="searchbox" size="30"> <button class="gosearch">검색하기</button>
 </div>
 <p></p>
 
+<div id ="writelist">
 <table >
 	<tr>
 		<td colspan = "5" >전체 게시글 수 : ${pagination.count }</td>
@@ -92,6 +90,7 @@
 	     <tr>
 	</c:forEach>
 </table>
+</div>
 	
 <a href="/">돌아가기</a>
 	
@@ -126,6 +125,23 @@
 		</c:when>
 	</c:choose>			
 </div>
-
+<script>
+$(document).on('click', '.gosearch', function () {
+	let searchbox = $('#searchbox').val();
+	let searchtype = $('#searchType').val();
+	$.ajax({
+		method: "GET",
+		url: "/search-list",
+		data: {
+			searchType:searchtype, 
+			keyword:searchbox
+		  }
+	})
+	.done(function( html ) {
+		console.log(html);
+		$('#writelist').html(html);
+	});
+});
+</script>
 </body>
 </html>

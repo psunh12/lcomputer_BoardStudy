@@ -9,6 +9,9 @@ public class Pagination {
 	int lastPage;
 	int prevPage;
 	int nextPage;
+	private String searchType ="";
+	private String keyword= "";
+	
 	public static final int pageUnit=5;
 	public static final int perPage=5;
 	
@@ -79,4 +82,16 @@ public class Pagination {
 	public void setNextPage(int nextPage) {
 		this.nextPage=nextPage;
 	}
+	public String getSearchType() {
+		  return searchType;
+	}
+	 public void setSearchType(String searchType) {
+		  this.searchType = searchType;
+	}
+	 public String getKeyword() {
+		  return keyword;
+	}
+	 public void setKeyword(String keyword) {
+		  this.keyword = keyword;
+	}	
 }

@@ -18,7 +18,6 @@ import com.lcomputerstudy3.example.domain.Board;
 import com.lcomputerstudy3.example.domain.Pagination;
 import com.lcomputerstudy3.example.domain.User;
 import com.lcomputerstudy3.example.domain.Comment;
-import com.lcomputerstudy3.example.domain.Search;
 import com.lcomputerstudy3.example.service.BoardService;
 import com.lcomputerstudy3.example.service.UserService;
 
@@ -208,10 +207,11 @@ public class Controller {
 	   model.addAttribute("list",list);
 	   return "/comment-list";
    }
-   @RequestMapping("/search")
-   	public String search(Model model, Search search) {
-	   List<Board> list = boardservice.selectSearchPost(search);
+   @RequestMapping("/search-list")
+   	public String search(Model model, Pagination pagination) {
+	   List<Board> list = boardservice.selectSearchPost(pagination);
 	   model.addAttribute("list",list);
 	   return "/search-list";
    }
+   
 }

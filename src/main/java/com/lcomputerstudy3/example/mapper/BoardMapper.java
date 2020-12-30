@@ -4,7 +4,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import com.lcomputerstudy3.example.domain.Board;
 import com.lcomputerstudy3.example.domain.Comment;
-import com.lcomputerstudy3.example.domain.Search;
+import com.lcomputerstudy3.example.domain.Pagination;
+
 @Mapper
 public interface BoardMapper {
 	public List<Board> selectBoardList(int pageNum);
@@ -24,7 +25,7 @@ public interface BoardMapper {
 	public void createReply(Board board);
 	public Board selectMaxOrder(Board board);
 	public void updateOrder(Board board);
-	public List<Board> selectSearchPost(Search search);
+	public List<Board> selectSearchPost(Pagination pagination);
 }
 
 

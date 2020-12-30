@@ -162,8 +162,14 @@
 		<select id="selectSearchPost" resultType="Board">
 		SELECT	*
 		FROM 	lc_board
-		WHERE 	b_content LIKE 	'%keyword%'
-		OR 		b_writer LIKE 	'%keyword%'
-		OR 		b_title LIKE 	'%keyword%'
+		<if "searchType = 아이디 ">
+		WHERE 	b_writer LIKE 	CONCAT('%', #{keyword}, '%')
+		</if>
+		<if "searchType = 제목 ">
+		WHERE 	b_title LIKE 	CONCAT('%', #{keyword}, '%')
+		</if>	
+		<if "searchType = 내용 ">
+		WHERE 	b_content LIKE 	CONCAT('%', #{keyword}, '%')
+		</if>
 		</select>	
 </mapper>

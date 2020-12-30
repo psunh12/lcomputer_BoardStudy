@@ -1,11 +1,9 @@
 package com.lcomputerstudy3.example.service;
 
 import java.util.List;
-
-
 import com.lcomputerstudy3.example.domain.Board;
 import com.lcomputerstudy3.example.domain.Comment;
-import com.lcomputerstudy3.example.domain.Search;
+import com.lcomputerstudy3.example.domain.Pagination;
 
 
 public interface BoardService {
@@ -26,6 +24,6 @@ public interface BoardService {
 	public void createReply(Board board);
 	public Board selectMaxOrder(Board board);
 	public void updateOrder(Board board);
-	public List<Board> selectSearchPost(Search search);
+	public List<Board> selectSearchPost(Pagination pagination);
 	
 }
