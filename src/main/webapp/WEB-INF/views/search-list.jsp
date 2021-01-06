@@ -1,8 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
-<table >
 
+<table >
+	<tr>
+		<td colspan = "5" >검색된 게시글 수 : ${pagination.count }</td>
+	</tr>
 	<tr>
 		<th>No</th>
 		<th>답글번호</th>
@@ -30,3 +33,6 @@
 	     <tr>
 	</c:forEach>
 </table>
+
+<a href="/">돌아가기</a>
+	

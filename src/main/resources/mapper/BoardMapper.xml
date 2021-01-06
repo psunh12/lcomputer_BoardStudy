@@ -18,6 +18,15 @@
 				        ta.b_group as bGroup,
 				        ta.b_order as bOrder
 		FROM 			lc_board ta
+			<if test='searchType.equals("id")'>
+			WHERE 	b_writer LIKE 	CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test='searchType.equals("title")'>
+			WHERE 	b_title LIKE 	CONCAT('%', #{keyword}, '%')
+			</if>	
+			<if test='searchType.equals("content")'>
+			WHERE 	b_content LIKE 	CONCAT('%', #{keyword}, '%')
+			</if>
 		ORDER BY 		b_group DESC, b_order asc
 		LIMIT			#{pageNum}, 5
 	   </select>
@@ -159,17 +168,23 @@
 		  			b_id = #{bId}
 		</update>
 		
-		<select id="selectSearchPost" resultType="Board">
-		SELECT	*
-		FROM 	lc_board
-		<if "searchType = 아이디 ">
-		WHERE 	b_writer LIKE 	CONCAT('%', #{keyword}, '%')
-		</if>
-		<if "searchType = 제목 ">
-		WHERE 	b_title LIKE 	CONCAT('%', #{keyword}, '%')
-		</if>	
-		<if "searchType = 내용 ">
-		WHERE 	b_content LIKE 	CONCAT('%', #{keyword}, '%')
-		</if>
-		</select>	
+		<select id="selectSearchPost" resultType="Board" parameterType="Pagination">
+			SELECT	b_id 			bId,
+					b_order			bOrder,
+					b_writer		bWriter,
+					b_title			bTitle,
+					b_content		bContent
+
+			FROM 	lc_board
+			<if test='searchType.equals("id")'>
+			WHERE 	b_writer LIKE 	CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test='searchType.equals("title")'>
+			WHERE 	b_title LIKE 	CONCAT('%', #{keyword}, '%')
+			</if>	
+			<if test='searchType.equals("content")'>
+			WHERE 	b_content LIKE 	CONCAT('%', #{keyword}, '%')
+			</if>
+		</select>
+		
 </mapper>

@@ -48,12 +48,13 @@
 <body>
 <h1>글목록</h1>
 <div id ="search">
-		<select class="controlbox" name="searchType">
-			<option value="id">아이디</option>
-			<option value="title">제목</option>
-			<option value="content">내용</option>			
-		</select>
-<input type="text" name="searchbox" size="30"> <button class="gosearch">검색하기</button>
+	<select class="controlbox" name="searchType">
+		<option value="id">아이디</option>
+		<option value="title">제목</option>
+		<option value="content">내용</option>			
+	</select>
+	<input type="text" name="searchbox" size="30">
+	<button class="gosearch">검색하기</button>
 </div>
 <p></p>
 
@@ -90,7 +91,7 @@
 	     <tr>
 	</c:forEach>
 </table>
-</div>
+
 	
 <a href="/">돌아가기</a>
 	
@@ -125,16 +126,21 @@
 		</c:when>
 	</c:choose>			
 </div>
+</div>
 <script>
 $(document).on('click', '.gosearch', function () {
-	let searchbox = $('#searchbox').val();
-	let searchtype = $('#searchType').val();
+	let searchbox = $('input[name="searchbox"]').val();
+	let searchtype = $("select[name='searchType']").val();
+
+	//console.log("box:"+searchbox);
+	//console.log("type:"+searchtype);
+	
 	$.ajax({
 		method: "GET",
 		url: "/search-list",
 		data: {
-			searchType:searchtype, 
-			keyword:searchbox
+			searchType: searchtype, 
+			keyword: searchbox
 		  }
 	})
 	.done(function( html ) {

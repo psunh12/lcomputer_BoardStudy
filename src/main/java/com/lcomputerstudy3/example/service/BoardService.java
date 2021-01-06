@@ -25,5 +25,6 @@ public interface BoardService {
 	public Board selectMaxOrder(Board board);
 	public void updateOrder(Board board);
 	public List<Board> selectSearchPost(Pagination pagination);
+	//public int selectSearchCount();
 	
 }

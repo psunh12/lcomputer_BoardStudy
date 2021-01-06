@@ -30,7 +30,6 @@ public class Controller {
 	@Autowired BoardService boardservice;
 
 	private int boardcount;
-
 	
    @RequestMapping("/")
    public String home(Model model) {
@@ -207,10 +206,19 @@ public class Controller {
 	   model.addAttribute("list",list);
 	   return "/comment-list";
    }
-   @RequestMapping("/search-list")
-   	public String search(Model model, Pagination pagination) {
+   @GetMapping({"/search-list","/search-list/{pageObject}"})
+   	public String search(Model model, Pagination pagination,@PathVariable("pageObject") Optional<Integer> pageObject) { 
+	int page = pageObject.isPresent() ? pageObject.get() : 1;
+	   
 	   List<Board> list = boardservice.selectSearchPost(pagination);
+	   List<Board> list2 = boardservice.selectBoardList(page);
+	   boardcount=boardservice.selectBoardCount();
+	   Pagination pagination2 = new Pagination(page, boardcount);
+	   
 	   model.addAttribute("list",list);
+	   model.addAttribute("list",list2);
+	   model.addAttribute("Pagination",pagination2);
+	   
 	   return "/search-list";
    }
    

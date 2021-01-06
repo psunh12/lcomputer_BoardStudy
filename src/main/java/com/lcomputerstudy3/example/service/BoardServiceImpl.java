@@ -92,6 +92,10 @@ public class BoardServiceImpl implements BoardService {
 	public List<Board> selectSearchPost(Pagination pagination) {
 		return boardMapper.selectSearchPost(pagination);
 	}
+	//@Override
+	//public int selectSearchCount() {
+		//return boardMapper.selectSearchCount();
+	//}
 
 }
 
