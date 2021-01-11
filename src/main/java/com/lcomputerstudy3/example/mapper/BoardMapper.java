@@ -8,10 +8,11 @@ import com.lcomputerstudy3.example.domain.Pagination;
 
 @Mapper
 public interface BoardMapper {
-	public List<Board> selectBoardList(int pageNum);
+	public List<Board> selectBoardList(Pagination pagination);
 	public Board readBoard(String bId);
 	public void createBoard(Board board);
 	public int selectBoardCount();
+	public int selectBoardSearchCount(Pagination pagination);
 	public Board selectBoardDetail(int bId);
 	public Board selectWriteEdit();
 	public void Editprocess(Board board);
@@ -26,7 +27,7 @@ public interface BoardMapper {
 	public Board selectMaxOrder(Board board);
 	public void updateOrder(Board board);
 	public List<Board> selectSearchPost(Pagination pagination);
-	public int selectSearchCount();
+	//public int selectSearchCount();
 }
 
 

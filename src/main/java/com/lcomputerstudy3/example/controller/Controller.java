@@ -102,7 +102,6 @@ public class Controller {
 	   int page = pageObject.isPresent() ? pageObject.get() : 1;
 	   
 	   List<Board> list =boardservice.selectBoardList(page);
-	   
 	   boardcount=boardservice.selectBoardCount();
 	   Pagination pagination = new Pagination(page, boardcount);
 	   
@@ -210,14 +209,14 @@ public class Controller {
    	public String search(Model model, Pagination pagination,@PathVariable("pageObject") Optional<Integer> pageObject) { 
 	int page = pageObject.isPresent() ? pageObject.get() : 1;
 	   
-	   List<Board> list = boardservice.selectSearchPost(pagination);
-	   List<Board> list2 = boardservice.selectBoardList(page);
-	   boardcount=boardservice.selectBoardCount();
+	   List<Board> list2 = boardservice.selectSearchPost(pagination);
+	   List<Board> list = boardservice.selectBoardList(page);
+	   boardcount=boardservice.selectBoardSearchCount(pagination);
 	   Pagination pagination2 = new Pagination(page, boardcount);
 	   
 	   model.addAttribute("list",list);
 	   model.addAttribute("list",list2);
-	   model.addAttribute("Pagination",pagination2);
+	   model.addAttribute("pagination", pagination2);
 	   
 	   return "/search-list";
    }

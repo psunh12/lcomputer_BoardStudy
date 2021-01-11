@@ -7,10 +7,11 @@ import com.lcomputerstudy3.example.domain.Pagination;
 
 
 public interface BoardService {
-	public List<Board> selectBoardList(int page);
+	public List<Board> selectBoardList(Pagination pagination, int page);
 	public Board readBoard(String bId);
 	public void createBoard(Board board);
 	public int selectBoardCount();
+	public int selectBoardSearchCount(Pagination pagination);
 	public int getBoardCount();
 	public Board selectBoardDetail(int bId);
 	public Board selectWriteEdit();
@@ -26,5 +27,6 @@ public interface BoardService {
 	public void updateOrder(Board board);
 	public List<Board> selectSearchPost(Pagination pagination);
 	//public int selectSearchCount();
+	
 	
 }

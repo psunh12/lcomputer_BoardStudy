@@ -13,7 +13,7 @@
 		<th>제목</th>
 		<th>내용</th>
 	</tr>
-	<c:forEach items="${list}" var="item">
+	<c:forEach items="${list2}" var="item">
 		 <c:choose>
 		 	<c:when test="${item.bOrder > 1}">
 		 		<c:set var="replyColor" value="background-color: gray" />
@@ -35,4 +35,39 @@
 </table>
 
 <a href="/">돌아가기</a>
+
+<div style="margin-top: 20px;">
+	<c:choose>
+		<c:when test="${pagination.startPage > pagination.pageUnit }">
+			<li style="">
+				<a href="/search-list/${pagination.prevPage }">◀</a>
+			</li>
+		</c:when>
+	</c:choose>			
+	<c:forEach var="i" begin="${pagination.startPage }" end="${pagination.endPage }" step="1">
+		<c:choose>
+			<c:when test="${pagination.page == i }">
+			<li style="background-color:#ededed;">
+				<a href="search-list">${i}</a>
+			</li>
+			</c:when>
+			<c:when test="${pagination.page != i }">
+			<li>
+				<a href="/search-list/${i}">${i}</a>
+			</li>
+			</c:when>
+		</c:choose>		
+	</c:forEach>
+	
+	<c:choose>
+		<c:when test="${pagination.endPage < pagination.lastPage }">
+			<li style="">
+				<a href="/search-list/${pagination.nextPage }">▶</a>
+			</li>
+		</c:when>
+	</c:choose>			
+</div>			
+
+
+
 	
