@@ -95,7 +95,7 @@
 	
 <a href="/">돌아가기</a>
 	
-<div style="margin-top: 20px;">
+<div class = "gopage" style="margin-top: 20px;">
 	<c:choose>
 		<c:when test="${pagination.startPage > pagination.pageUnit }">
 			<li style="">
@@ -129,15 +129,15 @@
 </div>
 <script>
 $(document).on('click', '.gosearch', function () {
-	let searchbox = $('input[name="searchbox"]').val();
-	let searchtype = $("select[name='searchType']").val();
+	//let keyword = $('input[name="searchbox"]').val();
+//	let searchType = $("select[name='searchType']").val();
 
 	//console.log("box:"+searchbox);
 	//console.log("type:"+searchtype);
 	
-	$.ajax({
+	/*$.ajax({
 		method: "GET",
-		url: "/search-list",
+		url: "/write-list",
 		data: {
 			searchType: searchtype, 
 			keyword: searchbox
@@ -146,6 +146,9 @@ $(document).on('click', '.gosearch', function () {
 	.done(function( html ) {
 		console.log(html);
 		$('#writelist').html(html);
+	});*/
+
+	location.href = "/write-list/"+page+"/"+searchType+"/"+keyword;
 	});
 });
 </script>

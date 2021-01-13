@@ -7,7 +7,7 @@ import com.lcomputerstudy3.example.domain.Pagination;
 
 
 public interface BoardService {
-	public List<Board> selectBoardList(Pagination pagination, int page);
+	//public List<Board> selectBoardList(Pagination pagination);
 	public Board readBoard(String bId);
 	public void createBoard(Board board);
 	public int selectBoardCount();

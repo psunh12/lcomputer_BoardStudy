@@ -1,37 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lcomputerstudy3.example.mapper.BoardMapper">
-	<select id="selectBoardList" parameterType="Pagination" resultType="Board">
-      <!-- SELECT 		@ROWNUM := @ROWNUM -1 AS ROWNUM,
-      				ta.b_id as bId,
-			        ta.b_title as bTitle,
-			        ta.b_content as bContent,
-			        ta.b_writer as bWriter
-	  FROM			lc_board ta,
-	  				(SELECT @ROWNUM := (SELECT COUNT(*) - #{pageNum} + 1 FROM lc_board ta)) tb
-	  LIMIT			#{pageNum}, 3		
-	   -->
-		SELECT 			ta.b_id as bId,
-				        ta.b_title as bTitle,
-				        ta.b_content as bContent,
-				        ta.b_writer as bWriter,
-				        ta.b_group as bGroup,
-				        ta.b_order as bOrder
-		FROM 			lc_board ta
-			<if test='searchType.equals("id")'>
-			WHERE 	b_writer LIKE 	CONCAT('%', #{keyword}, '%')
-			</if>
-			<if test='searchType.equals("title")'>
-			WHERE 	b_title LIKE 	CONCAT('%', #{keyword}, '%')
-			</if>	
-			<if test='searchType.equals("content")'>
-			WHERE 	b_content LIKE 	CONCAT('%', #{keyword}, '%')
-			</if>
-
-		ORDER BY 		b_group DESC, b_order asc
-		LIMIT			#{pageNum}, 5
-	   </select>
-	   
 	   <insert id="createBoard" parameterType="Board">
 			INSERT INTO lc_board (
 				b_title,
@@ -184,13 +153,13 @@
 		</update>
 		
 		<select id="selectSearchPost" resultType="Board" parameterType="Pagination">
-			SELECT	b_id 			bId,
-					b_order			bOrder,
-					b_writer		bWriter,
-					b_title			bTitle,
-					b_content		bContent
-
-			FROM 	lc_board
+		SELECT 			ta.b_id as bId,
+				        ta.b_title as bTitle,
+				        ta.b_content as bContent,
+				        ta.b_writer as bWriter,
+				        ta.b_group as bGroup,
+				        ta.b_order as bOrder
+		FROM 			lc_board ta
 			<if test='searchType.equals("id")'>
 			WHERE 	b_writer LIKE 	CONCAT('%', #{keyword}, '%')
 			</if>
@@ -200,6 +169,9 @@
 			<if test='searchType.equals("content")'>
 			WHERE 	b_content LIKE 	CONCAT('%', #{keyword}, '%')
 			</if>
+			
+			ORDER BY 		b_group DESC, b_order asc
+			LIMIT			#{pageNum}, #{perPage}
 		</select>
 		
 </mapper>

@@ -28,8 +28,6 @@ public class Controller {
 	
 	@Autowired UserService userservice;
 	@Autowired BoardService boardservice;
-
-	private int boardcount;
 	
    @RequestMapping("/")
    public String home(Model model) {
@@ -97,16 +95,33 @@ public class Controller {
 	   return "/write";
    }
    
-   @GetMapping({"/write-list", "/write-list/{pageObject}"})
-   public String writeList(Model model, @PathVariable("pageObject") Optional<Integer> pageObject) {
-	   int page = pageObject.isPresent() ? pageObject.get() : 1;
+   @GetMapping({
+	   "/write-list", 
+	   "/write-list/{pageObject}",
+	   "/write-list/{pageObject}/{searchTypeObject}",
+	   "/write-list/{pageObject}/{searchTypeObject}/{keywordObject}"})
+   public String writeList(Model model,Pagination pagination, 
+		   @PathVariable("pageObject") Optional<Integer> pageObject,
+		   @PathVariable("searchTypeObject") Optional<String> searchTypeObject,
+		   @PathVariable("keywordObject") Optional<String> keywordObject) {
 	   
-	   List<Board> list =boardservice.selectBoardList(page);
-	   boardcount=boardservice.selectBoardCount();
-	   Pagination pagination = new Pagination(page, boardcount);
+	   int page = pageObject.isPresent() ? pageObject.get() : 1;
+	   String searchType = searchTypeObject.isPresent() ? searchTypeObject.get() : "";
+	   String keyword = keywordObject.isPresent() ? keywordObject.get() : "";
+	   
+	   pagination.setSearchType(searchType);
+	   pagination.setKeyword(keyword);
+	   
+	   //int boardcount=boardservice.selectBoardCount();
+	   int boardcount = boardservice.selectBoardSearchCount(pagination);
+	   pagination = new Pagination(page, boardcount);
+	   pagination.setSearchType(searchType);
+	   pagination.setKeyword(keyword);
+	   List<Board> list =boardservice.selectSearchPost(pagination);
 	   
 	   model.addAttribute("list",list);
 	   model.addAttribute("pagination",pagination);
+	  
 	   
 	   return "/write-list";
    }
@@ -207,15 +222,13 @@ public class Controller {
    }
    @GetMapping({"/search-list","/search-list/{pageObject}"})
    	public String search(Model model, Pagination pagination,@PathVariable("pageObject") Optional<Integer> pageObject) { 
-	int page = pageObject.isPresent() ? pageObject.get() : 1;
+	   int page = pageObject.isPresent() ? pageObject.get() : 1;
+	   int boardcount = boardservice.selectBoardSearchCount(pagination);
 	   
-	   List<Board> list2 = boardservice.selectSearchPost(pagination);
-	   List<Board> list = boardservice.selectBoardList(page);
-	   boardcount=boardservice.selectBoardSearchCount(pagination);
+	   List<Board> list = boardservice.selectSearchPost(pagination);
 	   Pagination pagination2 = new Pagination(page, boardcount);
-	   
-	   model.addAttribute("list",list);
-	   model.addAttribute("list",list2);
+	
+	   model.addAttribute("list", list);
 	   model.addAttribute("pagination", pagination2);
 	   
 	   return "/search-list";

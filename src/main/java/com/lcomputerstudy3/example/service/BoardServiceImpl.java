@@ -12,12 +12,13 @@ import com.lcomputerstudy3.example.mapper.BoardMapper;
 public class BoardServiceImpl implements BoardService {
 
 	@Autowired BoardMapper boardMapper;
-	@Override
-	public List<Board> selectBoardList(Pagination pagination, int page){
+	
+	/*@Override
+	public List<Board> selectBoardList(Pagination pagination){
 		
 		int pageNum = (page-1)*3;
-		return boardMapper.selectBoardList(pagination);
-	}
+		return boardMapper.selectBoardList(pageNum);
+	}*/
 	@Override
 	public Board readBoard(String bId) {
 		return boardMapper.readBoard(bId);
@@ -101,6 +102,7 @@ public class BoardServiceImpl implements BoardService {
 	//public int selectSearchCount() {
 		//return boardMapper.selectSearchCount();
 	//}
+
 
 }
 
