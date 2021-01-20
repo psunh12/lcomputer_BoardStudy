@@ -220,7 +220,7 @@ public class Controller {
 	   model.addAttribute("list",list);
 	   return "/comment-list";
    }
-   @GetMapping({"/search-list","/search-list/{pageObject}"})
+   /*@GetMapping({"/search-list","/search-list/{pageObject}"})
    	public String search(Model model, Pagination pagination,@PathVariable("pageObject") Optional<Integer> pageObject) { 
 	   int page = pageObject.isPresent() ? pageObject.get() : 1;
 	   int boardcount = boardservice.selectBoardSearchCount(pagination);
@@ -232,6 +232,6 @@ public class Controller {
 	   model.addAttribute("pagination", pagination2);
 	   
 	   return "/search-list";
-   }
+   }*/
    
 }

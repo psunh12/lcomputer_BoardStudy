@@ -106,13 +106,11 @@
 	<c:forEach var="i" begin="${pagination.startPage }" end="${pagination.endPage }" step="1">
 		<c:choose>
 			<c:when test="${pagination.page == i }">
-			<li style="background-color:#ededed;">
-				<a href="write-list">${i}</a>
-			</li>
+			<li style="background-color:#ededed;">${i}</li>
 			</c:when>
 			<c:when test="${pagination.page != i }">
 			<li>
-				<a href="/write-list/${i}">${i}</a>
+				<a href="#" class="pageLink" page="${i}">${i}</a>
 			</li>
 			</c:when>
 		</c:choose>		
@@ -130,7 +128,7 @@
 <script>
 $(document).on('click', '.gosearch', function () {
 	//let keyword = $('input[name="searchbox"]').val();
-//	let searchType = $("select[name='searchType']").val();
+	//let searchType = $("select[name='searchType']").val();
 
 	//console.log("box:"+searchbox);
 	//console.log("type:"+searchtype);
@@ -148,9 +146,37 @@ $(document).on('click', '.gosearch', function () {
 		$('#writelist').html(html);
 	});*/
 
-	location.href = "/write-list/"+page+"/"+searchType+"/"+keyword;
-	});
+	let page = '${pagination.page}';
+	let searchType = $("select[name='searchType']").val();
+	let keyword = $('input[name="searchbox"]').val();
+	if (searchType != null) {
+		location.href = "/write-list/"+${pagination.page}+"/"+searchType+"/"+keyword;
+	}else{
+		location.href = "/write-list/"+${pagination.page};
+	}
 });
+
+
+$(document).on('click', '.pageLink', function () {
+	let page = $(this).attr('page');
+	let searchType = '${pagination.searchType}';
+	let keyword = '${pagination.keyword}';
+
+	let link = '/write-list';
+	if (page != '') {
+		link += '/' + page;
+		if (searchType != '') {
+			link += '/' + searchType;
+			if (keyword != '') {
+				link += '/' + keyword;
+			}
+		}
+	}
+	console.log(link);
+	
+	location.href = link;
+});
+
 </script>
 </body>
 </html>
