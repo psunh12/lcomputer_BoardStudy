@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>메인화면</title>
 </head>
 <body>
 	<h1>Home Page</h1>

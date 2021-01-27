@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +14,7 @@
             <input type="text" name="username" placeholder="id를 입력해주세요.">
             <input type="password" name="password" placeholder="password를 입력해주세요.">
              <input id = "remember_me" name ="remember-me" type = "checkbox"/>Remember me
-            <button type="submit">로그인</button>
+            <button type="submit" class="btn-default">로그인</button>
 		</form>
 </body>
 </html>
